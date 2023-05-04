@@ -1,6 +1,6 @@
 export interface ISearchRoomsParams {
-    limit: number;
-    offset: number;
-    hotel: string;
-    isEnabled?: boolean;
+  limit: number;
+  offset: number;
+  hotel: string;
+  isEnabled?: boolean;
 }

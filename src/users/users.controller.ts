@@ -1,16 +1,26 @@
-import {Controller, Get, Post, Body, Patch, Param, Delete, UseInterceptors, UseGuards} from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Patch,
+  Param,
+  Delete,
+  UseInterceptors,
+  UseGuards,
+} from '@nestjs/common';
 import { UsersService } from './users.service';
 import { CreateUserDto } from './dto/create-user.dto';
-import { UpdateUserDto } from './dto/update-user.dto';
-import {User} from "./schemas/user.schema";
-import {CreateClientInterceptor} from "./interceptors/create-client.interceptor";
-import {RoleGuard, Roles} from "../auth/guards/role.guards";
-import {RoleEnum} from "./enums/role.enum";
-import {AuthGuard} from "../auth/guards/auth.guard";
-import {CreateManagerInterceptor} from "./interceptors/create-manager.interceptor";
+import { User } from './schemas/user.schema';
+import { CreateClientInterceptor } from './interceptors/create-client.interceptor';
+import { RoleGuard, Roles } from '../auth/guards/role.guards';
+import { RoleEnum } from './enums/role.enum';
+import { AuthGuard } from '../auth/guards/auth.guard';
+import { CreateManagerInterceptor } from './interceptors/create-manager.interceptor';
+import { MongoExceptionInterceptor } from './interceptors/mongo-exception.interceptor';
 
-
-@Controller('/api')
+@Controller('')
+@UseInterceptors(MongoExceptionInterceptor)
 export class UsersController {
   constructor(private readonly usersService: UsersService) {}
 
@@ -45,7 +55,6 @@ export class UsersController {
     return this.usersService.findAll(params);
   }
 
-
   @Get(':id')
   findOne(@Param('id') id: string) {
     return this.usersService.findOneById(id);
@@ -55,5 +64,4 @@ export class UsersController {
   findOneByEmail(@Body() email: string) {
     return this.usersService.findOneByEmail(email);
   }
-
 }
