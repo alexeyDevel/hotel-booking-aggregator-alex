@@ -7,11 +7,11 @@
 Разработка API пользователя.
 Разработка API администратора.
 Разработка чата консультанта.
-Технологический стек
-Node.js;
-Nest.js;
-MongoDB;
-WebSocket.
+Технологический стек:
+- Node.js;
+- Nest.js;
+- MongoDB;
+- WebSocket.
 
 Один из вариантов запуска - docker-compose.yml  
 
